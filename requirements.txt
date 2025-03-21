@@ -1,0 +1,7 @@
+requests == 2.32.3
+litellm == 1.63.12
+fastapi == 0.115.11
+uvicorn == 0.34.0
+pydantic == 2.10.6
+bio == 1.7.1
+psycopg2 == 2.9.10

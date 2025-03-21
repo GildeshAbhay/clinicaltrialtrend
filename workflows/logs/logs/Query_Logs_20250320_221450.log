@@ -1,0 +1,6 @@
+2025-03-20 22:14:50,771 - INFO - Initialized PDFProcessor
+2025-03-20 22:14:50,771 - INFO - Listing PDF files in C:\Users\saksham.dubey\Desktop\Decibio\Ideation\Query-PDF\PDF
+2025-03-20 22:14:50,771 - INFO - Found 6 PDF files
+2025-03-20 22:14:50,771 - INFO - Starting upload of 6 PDFs
+2025-03-20 22:15:07,998 - INFO - Starting cleanup of files
+2025-03-20 22:15:21,074 - INFO - Successfully cleaned up 24 files

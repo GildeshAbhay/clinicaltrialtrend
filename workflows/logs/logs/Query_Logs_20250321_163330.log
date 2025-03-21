@@ -1,0 +1,3 @@
+2025-03-21 16:33:30,595 - INFO - Initialized QueryProcessor
+2025-03-21 16:33:32,506 - INFO - Processing query: early blood cancer detection
+2025-03-21 16:33:45,570 - ERROR - Error processing query: 'NoneType' object has no attribute 'lower'

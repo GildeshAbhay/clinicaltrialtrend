@@ -1,0 +1,14 @@
+2025-03-20 23:02:59,501 - INFO - Initialized PDFProcessor
+2025-03-20 23:02:59,501 - INFO - Listing PDF files in C:\Users\saksham.dubey\Desktop\Decibio\Ideation\Query-PDF\PDF
+2025-03-20 23:02:59,517 - INFO - Found 6 PDF files
+2025-03-20 23:02:59,517 - INFO - Starting upload of 6 PDFs
+2025-03-20 23:03:31,487 - INFO - Processing query: What is the data about and the heading of the files
+2025-03-20 23:03:58,379 - INFO - Successfully processed query
+2025-03-20 23:04:19,146 - INFO - Processing query: What are their key components
+2025-03-20 23:04:37,580 - INFO - Successfully processed query
+2025-03-20 23:05:00,321 - INFO - Processing query: all the articles
+2025-03-20 23:05:24,307 - INFO - Successfully processed query
+2025-03-20 23:05:38,338 - INFO - Processing query: Multicancer Screening
+2025-03-20 23:06:08,089 - INFO - Successfully processed query
+2025-03-20 23:06:26,526 - INFO - Starting cleanup of files
+2025-03-20 23:06:31,234 - INFO - Successfully cleaned up 6 files

@@ -1,0 +1,11 @@
+2025-03-20 23:01:54,191 - INFO - Initialized PDFProcessor
+2025-03-20 23:01:54,191 - INFO - Listing PDF files in C:\Users\saksham.dubey\Desktop\Decibio\Ideation\Query-PDF\PDF
+2025-03-20 23:01:54,191 - INFO - Found 6 PDF files
+2025-03-20 23:01:54,191 - INFO - Starting upload of 6 PDFs
+2025-03-20 23:02:29,162 - INFO - Starting cleanup of files
+2025-03-20 23:02:35,355 - INFO - Successfully cleaned up 12 files
+2025-03-20 23:02:37,305 - INFO - Processing query: What is the data about and the heading of the files
+2025-03-20 23:02:37,305 - WARNING - No files uploaded before processing query
+2025-03-20 23:02:37,305 - ERROR - Error processing query: No files have been uploaded
+2025-03-20 23:02:54,342 - INFO - Starting cleanup of files
+2025-03-20 23:02:54,823 - INFO - Successfully cleaned up 0 files

@@ -1,0 +1,8 @@
+2025-03-20 22:00:11,438 - INFO - Initialized PDFProcessor
+2025-03-20 22:00:11,439 - INFO - Listing PDF files in C:\Users\saksham.dubey\Desktop\Decibio\Ideation\Query-PDF\PDF
+2025-03-20 22:00:11,444 - INFO - Found 6 PDF files
+2025-03-20 22:00:11,445 - INFO - Starting upload of 6 PDFs
+2025-03-20 22:01:31,482 - INFO - Processing query: what kind of data you have?
+2025-03-20 22:01:57,061 - INFO - Successfully processed query
+2025-03-20 22:02:14,710 - INFO - Processing query: Explain this in detail
+2025-03-20 22:02:58,748 - INFO - Successfully processed query

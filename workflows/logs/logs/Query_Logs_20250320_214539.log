@@ -1,0 +1,11 @@
+2025-03-20 21:45:39,296 - INFO - Listing PDF files in C:\Users\saksham.dubey\Desktop\Decibio\Ideation\Query-PDF\PDF
+2025-03-20 21:45:39,296 - INFO - Found 6 PDF files
+2025-03-20 21:47:01,070 - INFO - Received query: What is the files about?
+2025-03-20 21:47:01,948 - INFO - Initialized PDFProcessor
+2025-03-20 21:47:01,948 - INFO - Starting complete PDF processing workflow
+2025-03-20 21:47:01,948 - INFO - Starting upload of 6 PDFs
+2025-03-20 21:47:35,149 - INFO - Processing query: What is the files about?
+2025-03-20 21:48:11,869 - INFO - Successfully processed query
+2025-03-20 21:48:11,871 - INFO - Cleaning up files regardless of success/failure
+2025-03-20 21:48:11,871 - INFO - Starting cleanup of files
+2025-03-20 21:48:28,487 - INFO - Successfully cleaned up 7 files
