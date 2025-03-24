@@ -30,17 +30,27 @@ async function addMessage(message, isUser = false) {
         contentDiv.textContent = message;
     } else {
         // Format the response data
-        const formattedMessage = `
-        Query: ${message.query}
-        Time period: ${message.timeframe}
-        Total papers found: ${message.total_papers}
-        Total trials found: ${message.total_trials}
-
-        Analysis: ${message.analysis}
-
-                `;
-                contentDiv.textContent = formattedMessage;
-            }
+        let formattedMessage = `Query: ${message.query}\n`;
+        formattedMessage += `Time period: ${message.timeframe}\n`;
+        formattedMessage += `Total papers found: ${message.total_papers}\n`;
+        formattedMessage += `Total trials found: ${message.total_trials}\n\n`;
+        
+        // Add metrics summary
+        formattedMessage += "Papers Metrics:\n";
+        for (const [category, items] of Object.entries(message.metrics_summary.papers)) {
+            formattedMessage += `${category}: ${items.join(', ')}\n`;
+        }
+        
+        formattedMessage += "\nTrials Metrics:\n";
+        for (const [category, items] of Object.entries(message.metrics_summary.trials)) {
+            formattedMessage += `${category}: ${items.join(', ')}\n`;
+        }
+        
+        formattedMessage += "\nAnalysis:\n";
+        formattedMessage += message.analysis;
+        
+        contentDiv.innerHTML = marked.parse(formattedMessage);  // Use marked to render markdown
+    }
     
     messageDiv.appendChild(contentDiv);
     messagesDiv.appendChild(messageDiv);
@@ -109,11 +119,87 @@ async function sendQuery() {
     }
 }
 
+async function generateReport() {
+    const queryInput = document.getElementById('query-input');
+    const generateButton = document.querySelector('.generate-button');
+    const query = queryInput.value.trim();
+    
+    if (!query) return;
+
+    // Show loading state
+    document.getElementById('loading').style.display = 'block';
+    document.getElementById('report-section').style.display = 'none';
+    generateButton.disabled = true;
+
+    try {
+        const response = await fetch('/process-query', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ query: query })
+        });
+
+        const data = await response.json();
+        console.log("Received data:", data); // Debug log
+        
+        if (response.ok) {
+            displayReport(data);
+        } else {
+            alert(`Error: ${data.detail}`);
+        }
+    } catch (error) {
+        console.error("Error:", error); // Debug log
+        alert('Error generating report: ' + error.message);
+    } finally {
+        document.getElementById('loading').style.display = 'none';
+        generateButton.disabled = false;
+    }
+}
+
+function displayReport(data) {
+    // Show report section
+    const reportSection = document.getElementById('report-section');
+    reportSection.style.display = 'block';
+
+    // Set report title
+    document.getElementById('report-title').textContent = 
+        `Analysis Report: ${data.query}`;
+
+    // Display overview metrics
+    document.getElementById('overview-metrics').innerHTML = `
+        <p><strong>Time Period:</strong> ${data.timeframe}</p>
+        <p><strong>Total Papers:</strong> ${data.total_papers}</p>
+        <p><strong>Total Trials:</strong> ${data.total_trials}</p>
+    `;
+
+    // Display paper metrics
+    document.getElementById('paper-metrics').innerHTML = formatMetrics(data.metrics_summary.papers);
+
+    // Display trial metrics
+    document.getElementById('trial-metrics').innerHTML = formatMetrics(data.metrics_summary.trials);
+
+    // Display detailed analysis
+    document.getElementById('detailed-analysis').innerHTML = marked.parse(data.analysis);
+}
+
+function formatMetrics(metrics) {
+    return Object.entries(metrics)
+        .map(([category, items]) => `
+            <div class="metric-category">
+                <h4>${category.charAt(0).toUpperCase() + category.slice(1)}</h4>
+                <ul>
+                    ${items.map(item => `<li>${item}</li>`).join('')}
+                </ul>
+            </div>
+        `).join('');
+}
+
 // Handle Enter key in input
 document.getElementById('query-input').addEventListener('keypress', function(e) {
     if (e.key === 'Enter' && !e.shiftKey) {
         e.preventDefault();
-        sendQuery();
+        generateReport();
     }
 });
 
