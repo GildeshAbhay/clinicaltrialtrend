@@ -1,7 +1,7 @@
 from typing import Dict
 import os
 from workflows.logs.log import setup_logger
-from trial_publication_gap_analyzer import get_search_terms, fetch_pubmed_papers, fetch_aact_trials, calculate_research_gaps
+from trial_publication_gap_analyzer import get_search_terms, fetch_pubmed_papers, fetch_aact_trials, calculate_research_gaps, generate_insights
 from dotenv import load_dotenv
 load_dotenv()
 class QueryProcessor:
