@@ -2,7 +2,8 @@ from typing import Dict
 import os
 from workflows.logs.log import setup_logger
 from trial_publication_gap_analyzer import get_search_terms, fetch_pubmed_papers, fetch_aact_trials, calculate_research_gaps
-
+from dotenv import load_dotenv
+load_dotenv()
 class QueryProcessor:
     def __init__(self, api_key: str):
         """Initialize the QueryProcessor with OpenAI API key."""
