@@ -176,31 +176,3 @@ def generate_insights(papers, trials):
         )
     return response.choices[0].message.content
 
-if __name__ == "__main__":
-    # Hardcoded user input
-    user_query = "early cancer detection via blood tests"
-    start_year = 2002
-    end_year = 2023
-    OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-    os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY
-
-    # Generate search terms
-    terms = get_search_terms(user_query)
-    
-    # Fetch data
-    papers = fetch_pubmed_papers(terms, start_year, end_year)
-    trials = fetch_aact_trials(terms, start_year, end_year)
-    # Analyze gaps
-    gaps = calculate_research_gaps(papers, trials, terms["keywords"])
-    insights = generate_insights(papers, trials)
-    
-    # Generate output
-    output = {
-        "query": user_query,
-        "timeframe": f"{start_year}-{end_year}",
-        "total_papers": len(papers),
-        "total_trials": len(trials),
-        "insights" : insights
-    }
-    
-    print(json.dumps(output, indent=2))
