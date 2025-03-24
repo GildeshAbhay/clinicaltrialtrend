@@ -130,6 +130,52 @@ def calculate_research_gaps(papers, trials, keywords):
             })
     return sorted(gaps, key=lambda x: x["gap_score"], reverse=True)
 
+def generate_insights(papers, trials):
+    """Use LLM to perform deep comparative analysis of papers vs trials"""
+    
+    # Create context strings
+    paper_context = "\n".join(
+        f"Paper {i+1}: {p['title']}. KEY POINTS: {p['abstract'][:500]}..." 
+        for i, p in enumerate(papers[:10])  # First 10 papers for token limits
+    )
+    
+    trial_context = "\n".join(
+        f"Trial {j+1}: {t['brief_title']}. OBJECTIVES: {t['outcome_or_title'][:200]}" 
+        for j, t in enumerate(trials[:10])  # First 10 trials
+    )
+
+    prompt = f"""Analyze these medical research papers and clinical trials to identify:
+
+    1. **Emerging Patterns** - What novel approaches in papers lack clinical validation?
+    2. **Translation Gaps** - What paper findings should be trialed but aren't?
+    3. **Demographic Disparities** - Which populations are over-studied vs neglected?
+    4. **Technology Readiness** - Which diagnostic tools remain pre-clinical?
+    5. **Commercial Potential** - What innovations lack industry sponsorship?
+
+    Format response as markdown with 5 sections matching above. For each category:
+    - 3-5 bullet points
+    - Specific examples from context
+    - Recommendations for development
+
+    **Research Papers Context**
+    {paper_context}
+
+    **Clinical Trials Context**
+    {trial_context}
+
+    Example response format:
+    ## Emerging Patterns
+    - Pattern description (Paper 3, 5)
+    - Another observation (Trial 2, Paper 7)"""
+
+    response = litellm.completion(
+            model="gpt-4",
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.7,
+            max_tokens=2000
+        )
+    return response.choices[0].message.content
+
 if __name__ == "__main__":
     # Hardcoded user input
     user_query = "early cancer detection via blood tests"
@@ -143,10 +189,10 @@ if __name__ == "__main__":
     
     # Fetch data
     papers = fetch_pubmed_papers(terms, start_year, end_year)
-
     trials = fetch_aact_trials(terms, start_year, end_year)
     # Analyze gaps
     gaps = calculate_research_gaps(papers, trials, terms["keywords"])
+    insights = generate_insights(papers, trials)
     
     # Generate output
     output = {
@@ -154,13 +200,7 @@ if __name__ == "__main__":
         "timeframe": f"{start_year}-{end_year}",
         "total_papers": len(papers),
         "total_trials": len(trials),
-        "top_gaps": gaps[:5],
-        "interpretation": (
-            f"Research papers outnumber clinical trials {len(papers):,}:{len(trials):,} "
-            f"({len(papers)/max(len(trials),1):.1f}x ratio)\n"
-            "Largest opportunities in: " 
-            + ", ".join([g["topic"] for g in gaps[:3]])
-        )
+        "insights" : insights
     }
     
     print(json.dumps(output, indent=2))
