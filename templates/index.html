@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Clinical Trial Trend Detector - Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-bg: #f8fafc;
+            --secondary-bg: #ffffff;
+            --accent-color: #6366f1;
+            --accent-hover: #4f46e5;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --border-color: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: var(--primary-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .hero {
+            background: linear-gradient(to right, #6366f1, #4f46e5);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .main-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature-card {
+            background: var(--secondary-bg);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card h3 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--accent-color);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 2rem;
+            transition: background 0.2s;
+        }
+
+        .cta-button:hover {
+            background: var(--accent-hover);
+        }
+
+        .how-it-works {
+            margin: 4rem 0;
+        }
+
+        .step {
+            margin-bottom: 2rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .step::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <h1>Clinical Trial Trend Detector</h1>
+        <p>Bridging the gap between medical research papers and clinical trials through AI-powered analysis</p>
+    </section>
+
+    <main class="main-content">
+        <section>
+            <h2>What is Clinical Trial Trend Detector?</h2>
+            <p>Our tool helps researchers, healthcare professionals, and analysts understand the relationship between published medical research and ongoing clinical trials. By analyzing both scientific papers and clinical trials, we identify trends, gaps, and opportunities in medical research.</p>
+        </section>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>Smart Analysis</h3>
+                <p>Uses advanced AI to analyze research papers and clinical trials, identifying key themes and patterns.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Gap Detection</h3>
+                <p>Identifies areas where research findings haven't yet translated into clinical trials, highlighting opportunities for new studies.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Trend Insights</h3>
+                <p>Provides comprehensive insights about emerging trends in both research publications and clinical trials.</p>
+            </div>
+        </div>
+
+        <section class="how-it-works">
+            <h2>How It Works</h2>
+            <div class="step">
+                <h3>1. Enter Your Research Topic</h3>
+                <p>Simply type in your area of interest (e.g., "early cancer detection via blood tests")</p>
+            </div>
+            <div class="step">
+                <h3>2. AI Analysis</h3>
+                <p>Our system analyzes thousands of research papers and clinical trials using advanced AI</p>
+            </div>
+            <div class="step">
+                <h3>3. Get Insights</h3>
+                <p>Receive a detailed report showing trends, gaps, and opportunities in your research area</p>
+            </div>
+        </section>
+
+        <div style="text-align: center;">
+            <a href="/analyze" class="cta-button">Start Analyzing Trends</a>
+        </div>
+    </main>
+</body>
+</html> 

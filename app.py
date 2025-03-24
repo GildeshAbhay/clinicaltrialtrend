@@ -25,12 +25,15 @@ templates = Jinja2Templates(directory="templates")
 # Initialize query processor
 query_processor = QueryProcessor(api_key=os.getenv('OPENAI_API_KEY'))
 
-
 class QueryRequest(BaseModel):
     query: str
 
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
+
+@app.get("/analyze", response_class=HTMLResponse)
+async def analyze(request: Request):
     return templates.TemplateResponse("chat.html", {"request": request})
 
 @app.post("/process-query")
